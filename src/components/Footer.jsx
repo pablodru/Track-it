@@ -1,21 +1,24 @@
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
-import styled from "styled-components"
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import 'react-circular-progressbar/dist/styles.css';
+import styled from "styled-components";
 
 export default function Footer(){
     return (
         <SCFooter>
             <p>Hábitos</p>
-            {/* <CircularProgressbar value={50} text='Hoje' style={buildStyles({
-                textSize: '18px',
-                backgroundColor:'#52B6FF'
-            })} /> */}
+            <div>
+                <CircularProgressbar value={50} text='Hoje' strokewidth={8} backgroundColor='' backgroundPadding={7} style={buildStyles({
+                    textSize: '18px',
+                    backgroundColor:'#52B6FF',
+                })} />
+            </div>
             <p>Histórico</p>
         </SCFooter>
     )
 }
 
 const SCFooter = styled.div`
-    width:100vw;
+    width:100%;
     height:70px;
     background-color:#ffffff;
     
@@ -36,5 +39,10 @@ const SCFooter = styled.div`
         text-align: center;
         color:#52B6FF;
     }
-    
+
+    div{
+        width:91px;
+        height:91px;
+        margin-bottom:40px;
+    }
 `

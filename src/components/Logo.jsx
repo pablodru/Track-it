@@ -8,7 +8,7 @@ export default function Logo(){
 }
 
 const SCLogo = styled.img`
-    width:48%;
+    width:200px;
     height:27%;
     margin:100px auto 33px auto;
     display:block;

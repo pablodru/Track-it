@@ -11,3 +11,15 @@ export const SCRegister = styled.p`
     color: #52B6FF;
     margin-top: 25px;
 `
+
+export const SCLoading = styled.div`
+        width:303px;
+        height:45px;
+        background-color: #52B6FF;
+        border-radius: 4.63636px;
+        border:1px solid #52B6FF;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+`

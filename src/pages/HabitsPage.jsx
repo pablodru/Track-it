@@ -2,11 +2,13 @@ import styled, { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
 import CreateHabit from "../components/CreateHabit";
 import Footer from "../components/Footer";
+import Habit from "../components/Habit";
+import { GlobalBodyStyle } from "../assets/styles/GlobalBodyStyle";
 
 export default function HabitsPage(){
     return (
         <>
-            <GlobalStyle />
+            <GlobalBodyStyle />
             
             <Header />
             
@@ -15,10 +17,12 @@ export default function HabitsPage(){
                 <button>+</button>
             </SCMyHabit>
             <SCNoHabits>
-            Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+                Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
             </SCNoHabits>
 
             <CreateHabit />
+
+            <Habit />
 
             <Footer />
         </>
@@ -59,12 +63,4 @@ const SCNoHabits = styled.p`
     font-size: 17.976px;
     line-height: 22px;
     color:#666666;
-`
-
-const GlobalStyle = createGlobalStyle`
-    body{
-        background-color:#f0efefdf; //mudarrrrrrr
-        width:100vw;
-        overflow-x:hidden;
-    }
 `

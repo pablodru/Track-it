@@ -45,7 +45,7 @@ const ResetStyle = createGlobalStyle`
 		border-spacing: 0;
 	}
 	body{
-		width:100vw;
+		width:100%;
 	}
 `
 

@@ -1,20 +1,24 @@
 import styled from "styled-components";
 import { weekdays } from "../constants/weekdays";
+import Weekdays from "./Weekdays";
 
 export default function CreateHabit(){
     return (
-        <SCCreateHabit>
-            <div>
-                <input type="text" placeholder="nome do hábito" />
+        <>
+            <SCCreateHabit>
                 <div>
-                    {weekdays.map((day, id) => <SCWeekdays type='button' key={id}> {day}</SCWeekdays>)}
+                    <input type="text" placeholder="nome do hábito" />
+                    <div>
+                        <Weekdays />
+                    </div>
                 </div>
-            </div>
-            <SCButtons>
-                <button type="reset"> Cancelar </button>
-                <button type="submit"> Salvar </button>
-            </SCButtons>
-        </SCCreateHabit>
+                <SCButtons>
+                    <button type="reset"> Cancelar </button>
+                    <button type="submit"> Salvar </button>
+                </SCButtons>
+            </SCCreateHabit>
+        </>
+
     )
 }
 
@@ -57,14 +61,4 @@ const SCButtons = styled.div`
         border:none;
     }
     }
-`
-
-const SCWeekdays = styled.button`
-    width:30px;
-    height:30px;
-    background-color:#ffffff;
-    border: 1px solid #D5D5D5;
-    border-radius:5px;
-    color:#DBDBDB;
-    
 `
