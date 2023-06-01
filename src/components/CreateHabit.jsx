@@ -41,7 +41,7 @@ const SCCreateHabit = styled.form`
 
     div:nth-child(2){
         flex-direction:row;
-        width:236px;
+        //width:236px;
         height:30px;
         display:flex;
         gap:4px;
@@ -49,7 +49,7 @@ const SCCreateHabit = styled.form`
 `
 
 const SCButtons = styled.div`
-    margin-left:186px;
+    margin-left:130px;
     button{
         width:84px;
         height:35px;

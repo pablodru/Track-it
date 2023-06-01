@@ -1,8 +1,12 @@
 import { ThreeDots } from "react-loader-spinner";
 import Logo from "../../components/Logo";
 import { SCRegister, SCLoading} from "./LoginPageStyle";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
+
+  const navigate = useNavigate();
+
   return (
     <>
       <Logo />
@@ -14,7 +18,7 @@ export default function LoginPage() {
           <ThreeDots width='40' height='20' color='#ffffff' visible={true} margin='0 auto' />
         </SCLoading> */}
       </form>
-      <SCRegister> Não tem uma conta? Cadastre-se! </SCRegister>
+      <SCRegister onClick={() => navigate('/cadastro')} > Não tem uma conta? Cadastre-se! </SCRegister>
     </>
   );
 }

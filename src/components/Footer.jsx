@@ -7,9 +7,12 @@ export default function Footer(){
         <SCFooter>
             <p>Hábitos</p>
             <div>
-                <CircularProgressbar value={50} text='Hoje' strokewidth={8} backgroundColor='' backgroundPadding={7} style={buildStyles({
+                <CircularProgressbar value={50} text='Hoje' strokewidth={8} background backgroundPadding={6} style={buildStyles({
                     textSize: '18px',
                     backgroundColor:'#52B6FF',
+                    textColor: '#ffffff',
+                    pathColor: '#ffffff',
+                    trailColor: 'transparent'
                 })} />
             </div>
             <p>Histórico</p>
