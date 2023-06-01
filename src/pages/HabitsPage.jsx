@@ -4,8 +4,12 @@ import CreateHabit from "../components/CreateHabit";
 import Footer from "../components/Footer";
 import Habit from "../components/Habit";
 import { GlobalBodyStyle } from "../assets/styles/GlobalBodyStyle";
+import { useLocation } from "react-router-dom";
 
 export default function HabitsPage(){
+
+    const {id, name, image, email, password, token} = useLocation().state;
+
     return (
         <>
             <GlobalBodyStyle />
