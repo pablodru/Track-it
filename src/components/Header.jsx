@@ -1,10 +1,15 @@
+import { useContext } from "react"
 import styled from "styled-components"
+import { MyContext } from "../contexts/MyContext"
 
 export default function Header(){
+
+    const {profileImage} = useContext(MyContext);
+
     return (
         <SCHeader>
             <h1>TrackIt</h1>
-            <img src="https://www.gaveanews.com/wp-content/uploads/gabigol-flamengo-fluminense-carioca-24-03-2019_2eestwm8b2qb11rdobawsvamj.jpg" alt="gabigol" />
+            <img src={profileImage} alt="Imagem de perfil" />
         </SCHeader>
     )
 }

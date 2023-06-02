@@ -23,7 +23,7 @@ export default function LoginPage() {
     axios.post(URL, body)
       .then(response => {
         console.log(response.data);
-        navigate('/habitos', {state:response.data});
+        navigate('/hoje', {state:response.data});
       })
       .catch(error => {
         alert(`O erro indicado foi: ${error.response.data}`)

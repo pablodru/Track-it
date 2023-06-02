@@ -5,10 +5,26 @@ import Footer from "../components/Footer";
 import Habit from "../components/Habit";
 import { GlobalBodyStyle } from "../assets/styles/GlobalBodyStyle";
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { URL_BASE } from "../constants/url";
 
 export default function HabitsPage(){
 
     const {id, name, image, email, password, token} = useLocation().state;
+    let [habit, setHabit] = useState([]);
+
+
+    useEffect(()=>{
+        const config={
+            headers:{
+                "Authorization": `Bearer ${token}`
+            }
+        }
+        axios.get(`${URL_BASE}/habits`, config)
+            .then(response => setHabit(response.data))
+            .catch(error => alert(`O erro foi: ${error.response.data}`));
+    },[])
 
     return (
         <>
@@ -26,7 +42,7 @@ export default function HabitsPage(){
 
             <CreateHabit />
 
-            <Habit />
+            <Habit habit={habit} />
 
             <Footer />
         </>

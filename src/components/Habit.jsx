@@ -4,13 +4,14 @@ import Weekdays from "./Weekdays";
 export default function Habit(){
     return(
         <SCHabit>
-            <p>Ler um capítulo de livro</p>
+            <p>Ler um livro por dia</p>
             <div>
-                <Weekdays />
+                <Weekdays /> 
             </div>
             <ion-icon style={{position:'absolute', top:'8px', right:'8px', width:'17px', height:'17px'}} name="trash-outline"></ion-icon>
         </SCHabit>
     )
+    //MARCAR OS DIAS RECEBIDOS: HABIT.DAYS
 }
 
 const SCHabit = styled.div`

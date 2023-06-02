@@ -3,9 +3,39 @@ import {GlobalBodyStyle} from '../assets/styles/GlobalBodyStyle';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CheckHabit from "../components/CheckHabit";
+import { useContext, useEffect, useState } from "react";
+import { MyContext } from "../contexts/MyContext";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { URL_BASE } from "../constants/url";
 
 
 export default function TodayPage(){
+
+    const {setProfileImage} = useContext(MyContext)
+    const {id, name, image, email, password, token} = useLocation().state;
+
+    let [habits, setHabits] = useState([]);
+    
+
+    useEffect(() =>{
+        setProfileImage(image);
+
+        const config={
+            headers:{
+                "Authorization": `Bearer ${token}`
+            }
+        }
+
+        axios.get(`${URL_BASE}/habits/today`, config)
+            .then(response => setHabits(response.data))
+            .catch(error => alert(`O erro foi: ${error.response.data}`));
+    },[])
+
+    // if(habits.length===0){
+    //     return <div>Carregando...</div>
+    // }
+
     return (
         <>
             <GlobalBodyStyle />

@@ -1,21 +1,25 @@
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Footer(){
+
+    const navigate = useNavigate();
+
     return (
         <SCFooter>
-            <p>Hábitos</p>
-            <div>
+            <p> onClick={() => navigate('/habitos')}Hábitos</p>
+            <div onClick={() => navigate('/hoje')}>
                 <CircularProgressbar value={50} text='Hoje' strokewidth={8} background backgroundPadding={6} style={buildStyles({
                     textSize: '18px',
-                    backgroundColor:'#52B6FF',
+                    backgroundColor:'#52B6FF', //USAR CONTEXT PARA OS VALORES DA BARRA DE PROGRESSO
                     textColor: '#ffffff',
                     pathColor: '#ffffff',
                     trailColor: 'transparent'
                 })} />
             </div>
-            <p>Histórico</p>
+            <p onClick={() => navigate('/historico')}>Histórico</p>
         </SCFooter>
     )
 }
