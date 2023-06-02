@@ -10,10 +10,11 @@ import { useState } from "react";
 export default function App(){
 
   let[profileImage, setProfileImage] = useState('');
+  let [token, setToken] = useState('');
 
   return (
     <BrowserRouter>
-      <MyContext.Provider value={{profileImage, setProfileImage}} >
+      <MyContext.Provider value={{profileImage, setProfileImage, token, setToken}} >
         <Routes>
           <Route path='/' element={<LoginPage />} />
           <Route path='/cadastro' element={<RegisterPage />} />

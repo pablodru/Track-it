@@ -1,14 +1,16 @@
 import { useContext } from "react"
 import styled from "styled-components"
 import { MyContext } from "../contexts/MyContext"
+import { useNavigate } from "react-router-dom";
 
 export default function Header(){
 
     const {profileImage} = useContext(MyContext);
+    const navigate = useNavigate();
 
     return (
         <SCHeader data-test='header'>
-            <h1>TrackIt</h1>
+            <h1 onClick={() => navigate('/')} >TrackIt</h1>
             <img src={profileImage} alt="Imagem de perfil" data-test='avatar' />
         </SCHeader>
     )

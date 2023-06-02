@@ -8,11 +8,14 @@ import { MyContext } from "../contexts/MyContext";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { URL_BASE } from "../constants/url";
+import dayjs from "dayjs";
+import 'dayjs/locale/pt-br';
+
 
 
 export default function TodayPage(){
 
-    const {setProfileImage} = useContext(MyContext)
+    const {setProfileImage, setToken} = useContext(MyContext);
     const {id, name, image, email, password, token} = useLocation().state;
 
     let [habits, setHabits] = useState([]);
@@ -20,6 +23,7 @@ export default function TodayPage(){
 
     useEffect(() =>{
         setProfileImage(image);
+        setToken(token);
 
         const config={
             headers:{
@@ -42,12 +46,12 @@ export default function TodayPage(){
             <Header />
             
             <SCDate>
-                <h2>Segunda, 17/05</h2>
-                <p>Nenhum hábito concluído ainda</p>
-                {/* <p>67% dos hábitos concluídos</p> */}
+                <h2>{dayjs().locale('pt-br').format('dddd, DD/MM')}</h2>
+                {(habits.length===0) && (<p>Nenhum hábito concluído ainda</p>)}
+                {(habits.length>0) && (<p>67% dos hábitos concluídos</p>)}
             </SCDate>
 
-            <CheckHabit />
+            {habits.map(habit => <CheckHabit key={habit.id} habit={habit} />)}
 
             <Footer />
         </>
