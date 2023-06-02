@@ -8,9 +8,9 @@ export default function Footer(){
     const navigate = useNavigate();
 
     return (
-        <SCFooter>
-            <p> onClick={() => navigate('/habitos')}Hábitos</p>
-            <div onClick={() => navigate('/hoje')}>
+        <SCFooter data-test='menu'>
+            <p onClick={() => navigate('/habitos')} data-test='habit-link' >Hábitos</p>
+            <div onClick={() => navigate('/hoje')} data-test='today-link' >
                 <CircularProgressbar value={50} text='Hoje' strokewidth={8} background backgroundPadding={6} style={buildStyles({
                     textSize: '18px',
                     backgroundColor:'#52B6FF', //USAR CONTEXT PARA OS VALORES DA BARRA DE PROGRESSO
@@ -19,7 +19,7 @@ export default function Footer(){
                     trailColor: 'transparent'
                 })} />
             </div>
-            <p onClick={() => navigate('/historico')}>Histórico</p>
+            <p onClick={() => navigate('/historico')} data-test='history-link' >Histórico</p>
         </SCFooter>
     )
 }

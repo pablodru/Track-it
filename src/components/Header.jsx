@@ -7,9 +7,9 @@ export default function Header(){
     const {profileImage} = useContext(MyContext);
 
     return (
-        <SCHeader>
+        <SCHeader data-test='header'>
             <h1>TrackIt</h1>
-            <img src={profileImage} alt="Imagem de perfil" />
+            <img src={profileImage} alt="Imagem de perfil" data-test='avatar' />
         </SCHeader>
     )
 }

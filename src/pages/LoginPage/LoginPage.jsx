@@ -34,14 +34,14 @@ export default function LoginPage() {
     <>
       <Logo />
       <form onSubmit={(e) => login(e)}>
-        <input type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        {!disable && (<button type="submit">Entrar</button>)}
+        <input disabled={disable} type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required data-test='email-input' />
+        <input disabled={disable} type="password" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required data-test='password-input' />
+        {!disable && (<button type="submit" data-test='login-btn'>Entrar</button>)}
         {disable && ( <SCLoading>
                         <ThreeDots width='40' height='20' color='#ffffff' visible={true} margin='0 auto' />
                       </SCLoading>)}
       </form>
-      <SCRegister onClick={() => navigate('/cadastro')} > Não tem uma conta? Cadastre-se! </SCRegister>
+      <SCRegister onClick={() => navigate('/cadastro')} data-test='signup-link' > Não tem uma conta? Cadastre-se! </SCRegister>
     </>
   );
 }

@@ -41,16 +41,16 @@ export default function RegisterPage(){
         <>
             <Logo />
             <form onSubmit={(e) => register(e)}>
-                <input disabled={disable} type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                <input disabled={disable} type="password" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                <input disabled={disable} type="text" placeholder="nome" value={name} onChange={(e) => setName(e.target.value)}  required />
-                <input disabled={disable} type="url" placeholder="foto" value={image} onChange={(e) => setImage(e.target.value)} required />
-                {!disable && (<button disabled={disable} type='submit'> Cadastrar </button>)}
+                <input disabled={disable} type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required data-test='email-input' />
+                <input disabled={disable} type="password" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required data-test='password-input' />
+                <input disabled={disable} type="text" placeholder="nome" value={name} onChange={(e) => setName(e.target.value)}  required data-test='user-name-input' />
+                <input disabled={disable} type="url" placeholder="foto" value={image} onChange={(e) => setImage(e.target.value)} required data-test='user-image-input' />
+                {!disable && (<button disabled={disable} type='submit' data-test='signup-btn'> Cadastrar </button>)}
                 {disable && (<SCLoading>
-                                <ThreeDots width='40' height='20' color='#ffffff' visible={true} margin='0 auto' />
+                                <ThreeDots data-test='signup-btn' width='40' height='20' color='#ffffff' visible={true} margin='0 auto' />
                             </SCLoading>)}
             </form>
-            <SCRegister onClick={() => navigate('/')} > Já tem uma conta? Faça login! </SCRegister>
+            <SCRegister onClick={() => navigate('/')} data-test='login-link' > Já tem uma conta? Faça login! </SCRegister>
         </>
     )
 }
