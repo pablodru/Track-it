@@ -14,7 +14,22 @@ export default function LoginPage() {
   let [email, setEmail] = useState('');
   let [password, setPassword] = useState('');
 
-  const{ setToken, setProfileImage } = useContext(MyContext);
+  const{ setToken, setProfileImage, token, profileImage } = useContext(MyContext);
+
+  if(localStorage.getItem('data')){
+    const data = JSON.parse(localStorage.getItem("data"));
+    let URL = `${URL_BASE}/auth/login`;
+    let body={email:data.email, password: data.password};
+
+    axios.post(URL,body)
+      .then(response => {
+        setToken(response.data.token);
+        setProfileImage(response.data.image);
+        navigate('/hoje');
+      })
+      .catch(error => console.log(error.response.data));
+  }
+
 
   function login(e){
     e.preventDefault();
@@ -27,6 +42,7 @@ export default function LoginPage() {
       .then(response => {
         setToken(response.data.token);
         setProfileImage(response.data.image);
+        localStorage.setItem('data', JSON.stringify(response.data))
         navigate('/hoje');
       })
       .catch(error => {

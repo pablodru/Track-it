@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import CheckHabit from "../components/CheckHabit";
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../contexts/MyContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { URL_BASE } from "../constants/url";
 import dayjs from "dayjs";
@@ -18,30 +18,45 @@ export default function TodayPage(){
     let [habits, setHabits] = useState([]);
     let [render, setRender] = useState(false);
     
-    const { token, count, setPercentage, percentage } = useContext(MyContext);
+    const { token, count, setPercentage, percentage, setToken, setProfileImage } = useContext(MyContext);
 
     let day = dayjs().locale('pt-br').format('dddd, DD/MM');
     day = day.charAt(0).toUpperCase() + day.slice(1);
 
+    const navigate = useNavigate();
+
     if(habits.length>0){
-        setPercentage(Math.floor((count/habits.length)*100));
+        const doneList = habits.filter(h => {
+            if(h.done) return true
+        })
+
+        setPercentage(Math.floor((doneList.length/habits.length)*100));
     }
     
     useEffect(() =>{
 
-        const config={
-            headers:{
-                "Authorization": `Bearer ${token}`
+        if(localStorage.getItem('data')){
+
+            const data = JSON.parse(localStorage.getItem('data'));
+            setToken(data.token);
+            setProfileImage(data.image);
+
+            const config={
+                headers:{
+                    "Authorization": `Bearer ${data.token}`
+                }
             }
-        }
 
-        axios.get(`${URL_BASE}/habits/today`, config)
-            .then(response => setHabits(response.data))
-            .catch(error => alert(`O erro foi: ${error.response.data}`));
-        
-        setRender(false);
+            axios.get(`${URL_BASE}/habits/today`, config)
+                .then(response => setHabits(response.data))
+                .catch(error => alert(`O erro foi: ${error.response.data}`));
+            
+            setRender(false);
 
-        setPercentage(Math.floor((count/habits.length)*100))
+            setPercentage(Math.floor((count/habits.length)*100))
+        } else{
+            navigate('/');
+        }   
 
     },[render])
 
@@ -56,8 +71,8 @@ export default function TodayPage(){
             
             <SCDate>
                 <h2 data-test='today' >{day}</h2>
-                {(habits.length===0) && (<p data-test='today-counter' >Nenhum hábito concluído ainda</p>)}
-                {(habits.length>0) && (<p data-test='today-counter' >{percentage}% dos hábitos concluídos</p>)}
+                {(habits.length===0) && (<p data-test='today-counter' percentage={percentage}>Nenhum hábito concluído ainda</p>)}
+                {(habits.length>0) && (<SCdone data-test='today-counter' percentage={percentage} >{percentage}% dos hábitos concluídos</SCdone>)}
             </SCDate>
 
             {habits.map(habit => <CheckHabit key={habit.id} habit={habit} setRender={setRender} />)}
@@ -92,6 +107,15 @@ const SCDate = styled.div`
         font-weight: 400;
         font-size: 17.976px;
         line-height: 22px;
-        color: #BABABA; //#8FC549
+        color: #BABABA;
     }
+`
+
+const SCdone = styled.span`
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17.976px;
+    line-height: 22px;
+    color:${props => props.percentage===0 ? '#BABABA' : '#8FC549'}
 `

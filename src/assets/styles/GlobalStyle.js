@@ -45,6 +45,7 @@ export const GlobalStyle = createGlobalStyle`
         line-height: 26px;
         text-align: center;
         color: #FFFFFF;
+        cursor:pointer;
     }
     
 `;

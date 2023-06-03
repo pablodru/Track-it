@@ -10,6 +10,7 @@ export const SCRegister = styled.p`
     text-decoration-line: underline;
     color: #52B6FF;
     margin-top: 25px;
+    cursor:pointer;
 `
 
 export const SCLoading = styled.div`

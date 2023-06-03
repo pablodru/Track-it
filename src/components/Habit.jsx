@@ -29,7 +29,7 @@ export default function Habit({habit, setRender}){
             <div>
                 {weekdays.map((day, i) => <SCWeekdays type='button' key={i} i={i} days={days} data-test='habit-day' > {day} </SCWeekdays>)}
             </div>
-            <ion-icon data-test='habit-delete-btn' onClick={() => deleteHabit()} style={{position:'absolute', top:'8px', right:'8px', width:'17px', height:'17px'}} name="trash-outline"></ion-icon>
+            <ion-icon data-test='habit-delete-btn' onClick={() => deleteHabit()} style={{position:'absolute', top:'8px', right:'8px', width:'17px', height:'17px', cursor:'pointer'}} name="trash-outline"></ion-icon>
         </SCHabit>
     )
     //MARCAR OS DIAS RECEBIDOS: HABIT.DAYS

@@ -15,7 +15,6 @@ export default function CheckHabit({habit, setRender}){
         }
     }
     const day = dayjs();
-    console.log(count)
 
     function check(){
         if(!habit.done){

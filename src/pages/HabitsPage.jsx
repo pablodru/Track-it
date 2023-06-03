@@ -17,7 +17,7 @@ export default function HabitsPage(){
     let [name, setName] = useState('');
     let [days, setDays] = useState([]);
     let [render, setRender] = useState(false);
-    const {token} = useContext(MyContext);
+    const {token, setToken, setProfileImage} = useContext(MyContext);
 
     const config={
         headers:{
@@ -25,13 +25,19 @@ export default function HabitsPage(){
         }
     }
 
-
     useEffect(()=>{
-        axios.get(`${URL_BASE}/habits`, config)
-            .then(response => setHabit(response.data))
-            .catch(error => console.log(error.response));
 
-        setRender(false);
+        if(localStorage.getItem('data')){
+            const data = JSON.parse(localStorage.getItem('data'));
+            setToken(data.token);
+            setProfileImage(data.image);
+
+            axios.get(`${URL_BASE}/habits`, {headers:{'Authorization': `Bearer ${data.token}`}})
+                .then(response => setHabit(response.data))
+                .catch(error => console.log(error.response));
+
+            setRender(false);
+        }
     },[render])
 
     return (
@@ -54,6 +60,7 @@ export default function HabitsPage(){
                 {habit.length>0 && (habit.map(h => <Habit key={h.id} habit={h} setRender={setRender} />))}
 
             </HabitContext.Provider>
+            <SCspace></SCspace>
 
             <Footer />
         </>
@@ -94,4 +101,9 @@ const SCNoHabits = styled.p`
     font-size: 17.976px;
     line-height: 22px;
     color:#666666;
+`
+
+const SCspace = styled.div`
+    width:100%;
+    height:90px;
 `

@@ -51,11 +51,13 @@ const SCFooter = styled.div`
         line-height: 22px;
         text-align: center;
         color:#52B6FF;
+        cursor: pointer;
     }
 
     div{
         width:91px;
         height:91px;
         margin-bottom:40px;
+        cursor: pointer;
     }
 `
