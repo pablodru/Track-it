@@ -22,6 +22,10 @@ export default function TodayPage(){
 
     let day = dayjs().locale('pt-br').format('dddd, DD/MM');
     day = day.charAt(0).toUpperCase() + day.slice(1);
+
+    if(habits.length>0){
+        setPercentage(Math.floor((count/habits.length)*100));
+    }
     
     useEffect(() =>{
 
