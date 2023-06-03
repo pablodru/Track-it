@@ -41,7 +41,7 @@ export default function LoginPage() {
       <form onSubmit={(e) => login(e)}>
         <input disabled={disable} type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required data-test='email-input' />
         <input disabled={disable} type="password" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required data-test='password-input' />
-        {!disable && (<button type="submit" data-test='login-btn'>Entrar</button>)}
+        {!disable && (<button disabled={disable} type="submit" data-test='login-btn'>Entrar</button>)}
         {disable && ( <SCLoading>
                         <ThreeDots width='40' height='20' color='#ffffff' visible={true} margin='0 auto' />
                       </SCLoading>)}

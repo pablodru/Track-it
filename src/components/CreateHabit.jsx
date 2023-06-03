@@ -26,6 +26,12 @@ export default function CreateHabit({ setRender }){
 
     function newHabit(e){
         e.preventDefault();
+
+        if(name.length===0){
+            alert("O campo hábito não pode estar vazio");
+            return
+        }
+
         setDisable(true);
 
          axios.post(`${URL_BASE}/habits`,{name, days}, config)

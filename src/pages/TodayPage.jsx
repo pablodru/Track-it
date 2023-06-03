@@ -52,8 +52,8 @@ export default function TodayPage(){
             
             <SCDate>
                 <h2 data-test='today' >{day}</h2>
-                {(habits.length===0) && (<p data-test='today-container' >Nenhum hábito concluído ainda</p>)}
-                {(habits.length>0) && (<p data-test='today-container' >{percentage}% dos hábitos concluídos</p>)}
+                {(habits.length===0) && (<p data-test='today-counter' >Nenhum hábito concluído ainda</p>)}
+                {(habits.length>0) && (<p data-test='today-counter' >{percentage}% dos hábitos concluídos</p>)}
             </SCDate>
 
             {habits.map(habit => <CheckHabit key={habit.id} habit={habit} setRender={setRender} />)}
