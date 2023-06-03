@@ -6,35 +6,41 @@ import { MyContext } from "../contexts/MyContext"
 import dayjs from "dayjs"
 import 'dayjs/locale/pt-br';
 
-export default function CheckHabit(habit){
+export default function CheckHabit({habit, setRender}){
 
-    const {token} = useContext(MyContext);
+    const {token, count, setCount, setPercentage} = useContext(MyContext);
     const config={
         headers:{
-            'Authorization': `Bearer ${token}`
+            "Authorization": `Bearer ${token}`
         }
     }
     const day = dayjs();
-    console.log(day)
+    console.log(count)
 
     function check(){
         if(!habit.done){
-            axios.post(`${URL_BASE}/habits/${habit.id}/check`, config)
-                .then(response => console.log(response.data))
-                .catch(error => console.log(error.response.data));
+            axios.post(`${URL_BASE}/habits/${habit.id}/check`, {} , config)
+                .then(response => {
+                    setRender(true);
+                    setCount(count+1);
+                })
+                .catch(error => console.log(error.response));
         } else {
-            axios.post(`${URL_BASE}/habits/${habit.id}/uncheck`, config)
-                .then(response => console.log(response.data))
-                .catch(error => console.log(error.response.data));
+            axios.post(`${URL_BASE}/habits/${habit.id}/uncheck`, {} , config)
+                .then(response => {
+                    setRender(true);
+                    setCount(count-1);
+                })
+                .catch(error => console.log(error.response));
         }
     }
 
     return (
-        <SCCheck>
-            <p>{habit.name}</p>
-            <SCSequence>Sequência atual: <SCcurrent done={habit.done} >{habit.currentSequence}</SCcurrent> dias</SCSequence>
-            <SCSequence done={habit.done} high={habit.highestSequence} >Seu recorde: <SChigh>{habit.highestSequence}</SChigh> dias</SCSequence>
-            <ion-icon onClick={check} style={{position:'absolute',top:13, right:13, width:'69px', height:'69px', color:!habit.done ? '#EBEBEB' : '#8FC549', borderRadius:'5px'}} name="checkbox"></ion-icon>
+        <SCCheck data-test='today-habit-container'>
+            <p data-test='today-habit-name' >{habit.name}</p>
+            <SCSequence data-test='today-habit-sequence' >Sequência atual: <SCcurrent done={habit.done} >{habit.currentSequence}</SCcurrent> dias</SCSequence>
+            <SCSequence data-test='today-habit-record' done={habit.done} high={habit.highestSequence} >Seu recorde: <SChigh current={habit.currentSequence} high={habit.highestSequence} >{habit.highestSequence}</SChigh> dias</SCSequence>
+            <ion-icon data-test='today-habit-check-btn' onClick={check} style={{position:'absolute',top:13, right:13, width:'69px', height:'69px', color:!habit.done ? '#EBEBEB' : '#8FC549', borderRadius:'5px'}} name="checkbox"></ion-icon>
         </SCCheck>
     )
 }
@@ -76,5 +82,5 @@ const SCcurrent = styled.span`
 `
 
 const SChigh = styled.span`
-    color:${props => (props.done===props.high && props.done>0) ? '#8FC549' : '#666666'};
+    color:${props => (props.current===props.high && props.current>0) ? '#8FC549' : '#666666'};
 `

@@ -1,17 +1,21 @@
+import { useContext } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { MyContext } from "../contexts/MyContext";
 
 export default function Footer(){
 
     const navigate = useNavigate();
 
+    const {percentage} = useContext(MyContext);
+
     return (
         <SCFooter data-test='menu'>
             <p onClick={() => navigate('/habitos')} data-test='habit-link' >Hábitos</p>
             <div onClick={() => navigate('/hoje')} data-test='today-link' >
-                <CircularProgressbar value={50} text='Hoje' strokewidth={8} background backgroundPadding={6} style={buildStyles({
+                <CircularProgressbar value={percentage} text='Hoje' strokewidth={8} background backgroundPadding={6} style={buildStyles({
                     textSize: '18px',
                     backgroundColor:'#52B6FF', //USAR CONTEXT PARA OS VALORES DA BARRA DE PROGRESSO
                     textColor: '#ffffff',

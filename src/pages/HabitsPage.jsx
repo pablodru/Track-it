@@ -4,45 +4,56 @@ import CreateHabit from "../components/CreateHabit";
 import Footer from "../components/Footer";
 import Habit from "../components/Habit";
 import { GlobalBodyStyle } from "../assets/styles/GlobalBodyStyle";
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { URL_BASE } from "../constants/url";
+import { MyContext } from "../contexts/MyContext";
+import { HabitContext } from '../contexts/HabitContext';
 
 export default function HabitsPage(){
 
-    const {id, name, image, email, password, token} = useLocation().state;
     let [habit, setHabit] = useState([]);
+    let [create, setCreate] = useState(false);
+    let [name, setName] = useState('');
+    let [days, setDays] = useState([]);
+    let [render, setRender] = useState(false);
+    const {token} = useContext(MyContext);
+
+    const config={
+        headers:{
+            'Authorization': `Bearer ${token}`
+        }
+    }
 
 
     useEffect(()=>{
-        const config={
-            headers:{
-                "Authorization": `Bearer ${token}`
-            }
-        }
         axios.get(`${URL_BASE}/habits`, config)
             .then(response => setHabit(response.data))
-            .catch(error => alert(`O erro foi: ${error.response.data}`));
-    },[])
+            .catch(error => console.log(error.response));
+
+        setRender(false);
+    },[render])
 
     return (
         <>
             <GlobalBodyStyle />
             
             <Header />
+
+            <HabitContext.Provider value={{config, setCreate, days, setDays, name, setName}}>
             
-            <SCMyHabit>
-                <p> Meus hábitos </p>
-                <button>+</button>
-            </SCMyHabit>
-            <SCNoHabits>
-                Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
-            </SCNoHabits>
+                <SCMyHabit>
+                    <p> Meus hábitos </p>
+                    <button onClick={() => setCreate(true)} data-test='habit-create-btn' >+</button>
+                </SCMyHabit>
 
-            <CreateHabit />
+                {create && (<CreateHabit config={config} setCreate={setCreate} setRender={setRender} />)}
 
-            <Habit habit={habit} />
+                {habit.length===0 && (<SCNoHabits> Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear! </SCNoHabits>)}
+
+                {habit.length>0 && (habit.map(h => <Habit key={h.id} habit={h} setRender={setRender} />))}
+
+            </HabitContext.Provider>
 
             <Footer />
         </>

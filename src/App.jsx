@@ -11,10 +11,12 @@ export default function App(){
 
   let[profileImage, setProfileImage] = useState('');
   let [token, setToken] = useState('');
+  let [count, setCount] = useState(0);
+  let [percentage, setPercentage] = useState(0);
 
   return (
     <BrowserRouter>
-      <MyContext.Provider value={{profileImage, setProfileImage, token, setToken}} >
+      <MyContext.Provider value={{profileImage, setProfileImage, token, setToken, count, setCount, percentage, setPercentage}} >
         <Routes>
           <Route path='/' element={<LoginPage />} />
           <Route path='/cadastro' element={<RegisterPage />} />

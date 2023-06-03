@@ -15,15 +15,15 @@ import 'dayjs/locale/pt-br';
 
 export default function TodayPage(){
 
-    const {setProfileImage, setToken} = useContext(MyContext);
-    const {id, name, image, email, password, token} = useLocation().state;
-
     let [habits, setHabits] = useState([]);
+    let [render, setRender] = useState(false);
     
+    const { token, count, setPercentage, percentage } = useContext(MyContext);
 
+    let day = dayjs().locale('pt-br').format('dddd, DD/MM');
+    day = day.charAt(0).toUpperCase() + day.slice(1);
+    
     useEffect(() =>{
-        setProfileImage(image);
-        setToken(token);
 
         const config={
             headers:{
@@ -34,7 +34,12 @@ export default function TodayPage(){
         axios.get(`${URL_BASE}/habits/today`, config)
             .then(response => setHabits(response.data))
             .catch(error => alert(`O erro foi: ${error.response.data}`));
-    },[])
+        
+        setRender(false);
+
+        setPercentage(Math.floor((count/habits.length)*100))
+
+    },[render])
 
     // if(habits.length===0){
     //     return <div>Carregando...</div>
@@ -46,12 +51,12 @@ export default function TodayPage(){
             <Header />
             
             <SCDate>
-                <h2>{dayjs().locale('pt-br').format('dddd, DD/MM')}</h2>
-                {(habits.length===0) && (<p>Nenhum hábito concluído ainda</p>)}
-                {(habits.length>0) && (<p>67% dos hábitos concluídos</p>)}
+                <h2 data-test='today' >{day}</h2>
+                {(habits.length===0) && (<p data-test='today-container' >Nenhum hábito concluído ainda</p>)}
+                {(habits.length>0) && (<p data-test='today-container' >{percentage}% dos hábitos concluídos</p>)}
             </SCDate>
 
-            {habits.map(habit => <CheckHabit key={habit.id} habit={habit} />)}
+            {habits.map(habit => <CheckHabit key={habit.id} habit={habit} setRender={setRender} />)}
 
             <Footer />
         </>

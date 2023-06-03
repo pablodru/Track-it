@@ -3,8 +3,9 @@ import Logo from "../../components/Logo";
 import { SCRegister, SCLoading} from "./LoginPageStyle";
 import { useNavigate } from "react-router-dom";
 import { URL_BASE } from "../../constants/url";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { MyContext } from "../../contexts/MyContext";
 
 export default function LoginPage() {
 
@@ -12,6 +13,8 @@ export default function LoginPage() {
   let [disable, setDisable] = useState(false);
   let [email, setEmail] = useState('');
   let [password, setPassword] = useState('');
+
+  const{ setToken, setProfileImage } = useContext(MyContext);
 
   function login(e){
     e.preventDefault();
@@ -22,11 +25,13 @@ export default function LoginPage() {
 
     axios.post(URL, body)
       .then(response => {
-        console.log(response.data);
-        navigate('/hoje', {state:response.data});
+        setToken(response.data.token);
+        setProfileImage(response.data.image);
+        navigate('/hoje');
       })
       .catch(error => {
-        alert(`O erro indicado foi: ${error.response.data}`)
+        alert(`O erro indicado foi: ${error.response.data}`);
+        setDisable(false);
       })
   }
 

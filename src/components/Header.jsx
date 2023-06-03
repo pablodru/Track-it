@@ -41,5 +41,6 @@ const SCHeader = styled.div`
         width:51px;
         height:51px;
         border-radius: 98.5px;
+        object-fit:cover;
     }
 `
