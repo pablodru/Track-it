@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
         border-radius: 5px;
+        touch-action: manipulation;
         &::placeholder{
             font-family: 'Lexend Deca';
             font-style: normal;
