@@ -11,7 +11,6 @@ import { URL_BASE } from "../../constants/url";
 import dayjs from "dayjs";
 import 'dayjs/locale/pt-br';
 import { SCspace } from '../HabitsPage/HabitsPageStyle';
-import Loading from "../../components/Loading/Loading";
 import { SCDate, SCdone } from "./TodayPageStyle";
 
 
@@ -62,12 +61,6 @@ export default function TodayPage(){
         }   
 
     },[render])
-
-    if(habits.length===0){
-        return (
-            <Loading />
-        )
-    }
 
     return (
         <>

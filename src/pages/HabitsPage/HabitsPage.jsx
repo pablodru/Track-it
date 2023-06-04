@@ -9,7 +9,6 @@ import axios from "axios";
 import { URL_BASE } from "../../constants/url";
 import { MyContext } from "../../contexts/MyContext";
 import { HabitContext } from '../../contexts/HabitContext';
-import Loading from "../../components/Loading/Loading";
 import { SCMyHabit, SCNoHabits, SCspace } from "./HabitsPageStyle";
 
 export default function HabitsPage(){
@@ -41,12 +40,6 @@ export default function HabitsPage(){
             setRender(false);
         }
     },[render])
-
-    if(habit.length===0){
-        return (
-            <Loading />
-        )
-    }
 
     return (
         <>
