@@ -10,6 +10,8 @@ import axios from "axios";
 import { URL_BASE } from "../constants/url";
 import dayjs from "dayjs";
 import 'dayjs/locale/pt-br';
+import { SCspace } from './HabitsPage';
+import Loading from "../components/Loading";
 
 
 
@@ -60,9 +62,11 @@ export default function TodayPage(){
 
     },[render])
 
-    // if(habits.length===0){
-    //     return <div>Carregando...</div>
-    // }
+    if(habits.length===0){
+        return (
+            <Loading />
+        )
+    }
 
     return (
         <>
@@ -76,6 +80,8 @@ export default function TodayPage(){
             </SCDate>
 
             {habits.map(habit => <CheckHabit key={habit.id} habit={habit} setRender={setRender} />)}
+
+            <SCspace></SCspace>
 
             <Footer />
         </>

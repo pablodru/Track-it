@@ -9,6 +9,7 @@ import axios from "axios";
 import { URL_BASE } from "../constants/url";
 import { MyContext } from "../contexts/MyContext";
 import { HabitContext } from '../contexts/HabitContext';
+import Loading from "../components/Loading";
 
 export default function HabitsPage(){
 
@@ -39,6 +40,12 @@ export default function HabitsPage(){
             setRender(false);
         }
     },[render])
+
+    if(habit.length===0){
+        return (
+            <Loading />
+        )
+    }
 
     return (
         <>
@@ -86,7 +93,7 @@ const SCMyHabit = styled.div`
         color:#126BA5;
     }
     button{
-        width:40px;
+        width:35px;
         height:35px;
         font-size:27px;
     }
@@ -103,7 +110,7 @@ const SCNoHabits = styled.p`
     color:#666666;
 `
 
-const SCspace = styled.div`
+export const SCspace = styled.div`
     width:100%;
     height:90px;
 `
