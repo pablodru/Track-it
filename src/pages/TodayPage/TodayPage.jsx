@@ -1,17 +1,18 @@
 import styled from "styled-components";
-import {GlobalBodyStyle} from '../assets/styles/GlobalBodyStyle';
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import CheckHabit from "../components/CheckHabit";
+import {GlobalBodyStyle} from '../../assets/styles/GlobalBodyStyle';
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import CheckHabit from "../../components/CheckHabit/CheckHabit";
 import { useContext, useEffect, useState } from "react";
-import { MyContext } from "../contexts/MyContext";
+import { MyContext } from "../../contexts/MyContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { URL_BASE } from "../constants/url";
+import { URL_BASE } from "../../constants/url";
 import dayjs from "dayjs";
 import 'dayjs/locale/pt-br';
-import { SCspace } from './HabitsPage';
-import Loading from "../components/Loading";
+import { SCspace } from '../HabitsPage/HabitsPageStyle';
+import Loading from "../../components/Loading/Loading";
+import { SCDate, SCdone } from "./TodayPageStyle";
 
 
 
@@ -87,41 +88,3 @@ export default function TodayPage(){
         </>
     )
 }
-
-const SCDate = styled.div`
-    width:100%;
-    height:auto;
-    padding:18px;
-    margin-top:90px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    justify-items:center;
-
-    h2{
-        font-family: 'Lexend Deca';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 22.976px;
-        line-height: 29px;
-        color:#126BA5;
-    }
-    p{
-        font-family: 'Lexend Deca';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 17.976px;
-        line-height: 22px;
-        color: #BABABA;
-    }
-`
-
-const SCdone = styled.span`
-    font-family: 'Lexend Deca';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17.976px;
-    line-height: 22px;
-    color:${props => props.percentage===0 ? '#BABABA' : '#8FC549'}
-`

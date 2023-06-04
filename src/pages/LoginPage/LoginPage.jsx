@@ -1,5 +1,5 @@
 import { ThreeDots } from "react-loader-spinner";
-import Logo from "../../components/Logo";
+import Logo from "../../components/Logo/Logo";
 import { SCRegister, SCLoading} from "./LoginPageStyle";
 import { useNavigate } from "react-router-dom";
 import { URL_BASE } from "../../constants/url";

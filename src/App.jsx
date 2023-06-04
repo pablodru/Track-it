@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import LoginPage from './pages/LoginPage/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import HabitsPage from './pages/HabitsPage';
-import TodayPage from './pages/TodayPage';
-import HistoryPage from './pages/HistoryPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
+import HabitsPage from './pages/HabitsPage/HabitsPage';
+import TodayPage from './pages/TodayPage/TodayPage';
+import HistoryPage from "./pages/HistoryPage/HistoryPage";
 import { MyContext } from './contexts/MyContext';
 import { useState } from "react";
 

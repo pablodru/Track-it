@@ -1,15 +1,16 @@
 import styled, { createGlobalStyle } from "styled-components";
-import Header from "../components/Header";
-import CreateHabit from "../components/CreateHabit";
-import Footer from "../components/Footer";
-import Habit from "../components/Habit";
-import { GlobalBodyStyle } from "../assets/styles/GlobalBodyStyle";
+import Header from "../../components/Header/Header";
+import CreateHabit from "../../components/CreateHabit/CreateHabit";
+import Footer from "../../components/Footer/Footer";
+import Habit from "../../components/Habit/Habit";
+import { GlobalBodyStyle } from "../../assets/styles/GlobalBodyStyle";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { URL_BASE } from "../constants/url";
-import { MyContext } from "../contexts/MyContext";
-import { HabitContext } from '../contexts/HabitContext';
-import Loading from "../components/Loading";
+import { URL_BASE } from "../../constants/url";
+import { MyContext } from "../../contexts/MyContext";
+import { HabitContext } from '../../contexts/HabitContext';
+import Loading from "../../components/Loading/Loading";
+import { SCMyHabit, SCNoHabits, SCspace } from "./HabitsPageStyle";
 
 export default function HabitsPage(){
 
@@ -73,44 +74,3 @@ export default function HabitsPage(){
         </>
     )
 }
-
-const SCMyHabit = styled.div`
-    width:100%;
-    height:34px;
-    padding:18px;
-    margin-top:100px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    p{
-        font-family: 'Lexend Deca';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 22.976px;
-        line-height: 29px;
-        color:#126BA5;
-    }
-    button{
-        width:35px;
-        height:35px;
-        font-size:27px;
-    }
-`
-
-const SCNoHabits = styled.p`
-    padding:0 18px;
-    margin: 28px 0;
-    font-family: 'Lexend Deca';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17.976px;
-    line-height: 22px;
-    color:#666666;
-`
-
-export const SCspace = styled.div`
-    width:100%;
-    height:90px;
-`

@@ -1,10 +1,11 @@
 import axios from "axios"
 import styled from "styled-components"
-import { URL_BASE } from "../constants/url"
+import { URL_BASE } from "../../constants/url"
 import { useContext } from "react"
-import { MyContext } from "../contexts/MyContext"
+import { MyContext } from "../../contexts/MyContext"
 import dayjs from "dayjs"
 import 'dayjs/locale/pt-br';
+import { SCCheck, SCSequence, SCcurrent, SChigh } from "./CheckHabitStyle"
 
 export default function CheckHabit({habit, setRender}){
 
@@ -43,43 +44,3 @@ export default function CheckHabit({habit, setRender}){
         </SCCheck>
     )
 }
-
-const SCCheck = styled.div`
-    width: 340px;
-    height: 94px;
-    background: #FFFFFF;
-    border-radius: 5px;
-    margin:10px auto;
-    position:relative;
-    padding:13px;
-
-    display:flex;
-    flex-direction:column;
-
-    p:first-child{
-        font-family: 'Lexend Deca';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 19.976px;
-        line-height: 25px;
-        color: #666666;
-        margin-bottom:7px;
-    }
-`
-
-const SCSequence = styled.p`
-    font-family: 'Lexend Deca';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12.976px;
-    line-height: 16px;
-    color: #666666;
-`
-
-const SCcurrent = styled.span`
-    color:${props => props.done ? '#8FC549' : '#666666'};
-`
-
-const SChigh = styled.span`
-    color:${props => (props.current===props.high && props.current>0) ? '#8FC549' : '#666666'};
-`

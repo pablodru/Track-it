@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import Logo from "../components/Logo";
-import { SCRegister } from "./LoginPage/LoginPageStyle";
+import Logo from "../../components/Logo/Logo";
+import { SCRegister } from "../LoginPage/LoginPageStyle";
 import axios from "axios";
 import { useState } from "react";
-import {URL_BASE} from '../constants/url';
+import {URL_BASE} from '../../constants/url';
 import { ThreeDots } from "react-loader-spinner";
-import { SCLoading } from "./LoginPage/LoginPageStyle";
+import { SCLoading } from "../LoginPage/LoginPageStyle";
 
 export default function RegisterPage(){
 
